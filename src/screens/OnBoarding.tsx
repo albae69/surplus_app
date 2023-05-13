@@ -1,17 +1,23 @@
-import React from 'react';
+import React, {JSX, useEffect} from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
 
 // Local Imports
 import {images} from '@assets/images';
 import {dimension, fonts} from '@styles';
 import {Button} from '@components';
+import {setItem} from '@utils/asyncStorage';
+import {lsKey} from '@utils';
 
-function OnBoarding(): JSX.Element {
+function OnBoarding({navigation}: any): JSX.Element {
+  useEffect(() => {
+    setItem(lsKey.isBoarding, JSON.stringify(true));
+  }, []);
+
   return (
     <View style={styles.container}>
       <Button
         title="Lewati"
-        onPress={() => {}}
+        onPress={() => navigation.navigate('Login')}
         type="secondary"
         buttonStyle={styles.skipBtn}
       />
@@ -30,6 +36,7 @@ function OnBoarding(): JSX.Element {
             title="Sudah punya akun? Masuk"
             type="secondary"
             buttonStyle={styles.customBtn}
+            onPress={() => navigation.navigate('Login')}
           />
         </View>
         <Text style={styles.textConfirmation}>
