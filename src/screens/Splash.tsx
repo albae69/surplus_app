@@ -11,7 +11,10 @@ interface Props {
 
 function Splash({navigation}: Props) {
   useEffect(() => {
-    wait(1000).then(() => {});
+    // wait for 1.5 seconds and navigate to OnBoarding screen
+    wait(1500).then(() => {
+      navigation.replace('OnBoarding');
+    });
   }, []);
 
   return (
