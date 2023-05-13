@@ -37,7 +37,6 @@ function Splash({navigation}: Props): JSX.Element {
       <Text style={styles.text}>Save food. Save budget.</Text>
       <Text style={styles.text}>Save planet.</Text>
       <Image source={images.certified} style={styles.certified} />
-      <Text onPress={() => clear()}>Clear Local Storage</Text>
     </View>
   );
 }

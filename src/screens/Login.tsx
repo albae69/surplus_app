@@ -42,7 +42,7 @@ function Login({navigation}: any): JSX.Element {
         // TODO: save current user into async storage and navigate to home
         setItem(lsKey.user, JSON.stringify(currentUser));
         setLoading(false);
-        // navigation.navigate('Home')
+        navigation.replace('Home');
       }
     });
   };
