@@ -1,18 +1,23 @@
 import React, {useState} from 'react';
 import {View, Text, TextInput, StyleSheet, ViewStyle} from 'react-native';
 
+// Third Party
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+
 // Local Imports
 import {color, dimension, fonts} from '@styles';
 
 interface Props {
-  label: string;
-  type: 'default' | 'email' | 'password';
+  label?: string;
+  type?: 'default' | 'email' | 'password' | 'search';
   placeholder?: string;
-  value: string;
-  onChangeText: (text: string) => void;
-  isError: boolean;
-  errorMessage: string;
+  value?: string;
+  onChangeText?: (text: string) => void;
+  isError?: boolean;
+  errorMessage?: string;
   customInputStyle?: ViewStyle;
+  customContainerInputStyle?: ViewStyle;
+  editable?: boolean;
 }
 
 function Input(props: Props) {
@@ -25,11 +30,42 @@ function Input(props: Props) {
     isError,
     errorMessage,
     customInputStyle,
+    customContainerInputStyle,
+    editable,
   } = props;
 
   // States
   const [focus, setFocused] = useState<boolean>(false);
   const [show, setShow] = useState<boolean>(true);
+
+  if (type === 'search') {
+    return (
+      <View
+        style={[
+          styles.input,
+          focus && {borderColor: color.primary},
+          customContainerInputStyle,
+        ]}>
+        <View style={styles.row}>
+          <TextInput
+            value={value}
+            placeholder={placeholder}
+            onChangeText={onChangeText}
+            secureTextEntry={show}
+            style={[{flex: 1}, customInputStyle]}
+            onFocus={() => {
+              setFocused(true);
+            }}
+            onBlur={() => {
+              setFocused(false);
+            }}
+            editable={editable}
+          />
+          <MaterialIcons name="search" color="lightgray" size={26} />
+        </View>
+      </View>
+    );
+  }
 
   if (type === 'email') {
     return (

@@ -11,6 +11,7 @@ import {Button, Input} from '@components';
 function Login({navigation}: any): JSX.Element {
   //  user
   let currentUser = {
+    name: 'mail',
     email: 'mail@mail.com',
     password: 'admin12345',
   };
