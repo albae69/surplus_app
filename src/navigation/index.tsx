@@ -14,6 +14,7 @@ import {
   Forum,
   Profile,
   Discover,
+  DetailCategory,
 } from '@screens';
 import {color} from '@styles';
 
@@ -84,6 +85,7 @@ export default function Navigation(): JSX.Element {
         <Stack.Screen name="OnBoarding" component={OnBoarding} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Home" component={MyTabs} />
+        <Stack.Screen name="DetailCategory" component={DetailCategory} />
       </Stack.Navigator>
     </NavigationContainer>
   );

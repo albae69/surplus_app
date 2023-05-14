@@ -1,12 +1,23 @@
 import React, {JSX, useState, useEffect} from 'react';
-import {View, Text, StyleSheet, ScrollView} from 'react-native';
+import {View, Text, StyleSheet, ScrollView, Image, Linking} from 'react-native';
+
+// Third Party
 import Swiper from 'react-native-swiper';
 
 // Local Imports
-import {Header, Input, WalletVoucher} from '@components';
+import {
+  Button,
+  Category,
+  Header,
+  Input,
+  NearbyRestaurant,
+  Royalty,
+  WalletVoucher,
+} from '@components';
 import {color, dimension, fonts} from '@styles';
 import {getItem} from '@utils/asyncStorage';
 import {lsKey} from '@utils';
+import {images} from '@assets/images';
 
 function Discover(): JSX.Element {
   const [user, setUser] = useState<Record<string, any>>({});
@@ -55,13 +66,50 @@ function Discover(): JSX.Element {
         <WalletVoucher saldoAmount={0} availableVoucher={3} />
       </View>
       {/* Wallet Voucher */}
+
+      {/* Category */}
+      <View style={styles.wrapCategory}>
+        <Category />
+      </View>
+      {/* Category */}
+
+      {/* Royalty */}
+      <Royalty />
+      {/* Royalty */}
+
+      {/* Register Your City */}
+      <View style={styles.wrapRegisterYourCity}>
+        <Image source={images.login} style={styles.login_bg} />
+        <View style={styles.wrapTextRegisterYourCity}>
+          <Text style={styles.titleRegisterYourCity}>
+            Mau menyelamatkan banyak makanan di kota kamu?
+          </Text>
+          <Text style={styles.descriptRegisterYourCity}>
+            Ayo segera daftarkan kotamu di aplikasi Surplus agar kita bisa
+            beroperasi langsung dan kamu bisa menjadi bagian dari Surplus Hero!
+          </Text>
+        </View>
+        <Button
+          title="Daftarkan Kotamu!"
+          onPress={() =>
+            Linking.openURL(
+              'https://docs.google.com/forms/d/e/1FAIpQLSfdEc9_FqAuaGTF9SOIeRJ6lGPns7aBIjkBBPMyoPcgIdIfqw/viewform',
+            )
+          }
+        />
+      </View>
+      {/* Register Your City */}
+
+      {/* Nearby Restaurant */}
+      <NearbyRestaurant />
+      {/* Nearby Restaurant */}
     </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flexGrow: 1,
     backgroundColor: 'white',
   },
   wrapHeader: {
@@ -101,6 +149,33 @@ const styles = StyleSheet.create({
   },
   wrapWalletVoucher: {
     paddingHorizontal: dimension.lg,
+  },
+  wrapCategory: {
+    marginTop: dimension.lg,
+  },
+  login_bg: {
+    height: 300,
+    width: '100%',
+    resizeMode: 'cover',
+  },
+  wrapRegisterYourCity: {
+    paddingHorizontal: dimension.lg,
+  },
+  wrapTextRegisterYourCity: {
+    marginTop: dimension.xl,
+  },
+  titleRegisterYourCity: {
+    fontFamily: fonts.bold,
+    color: 'black',
+    fontSize: dimension.md,
+    textAlign: 'center',
+    marginBottom: dimension.s,
+  },
+  descriptRegisterYourCity: {
+    fontFamily: fonts.semibold,
+    fontSize: dimension.s,
+    textAlign: 'center',
+    marginBottom: dimension.xl,
   },
 });
 
