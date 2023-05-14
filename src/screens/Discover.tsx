@@ -1,5 +1,13 @@
 import React, {JSX, useState, useEffect} from 'react';
-import {View, Text, StyleSheet, ScrollView, Image, Linking} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  Image,
+  Linking,
+  Platform,
+} from 'react-native';
 
 // Third Party
 import Swiper from 'react-native-swiper';
@@ -31,7 +39,9 @@ function Discover(): JSX.Element {
   }, []);
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+    <ScrollView
+      contentContainerStyle={styles.container}
+      showsVerticalScrollIndicator={false}>
       {/* Header */}
       <View style={styles.wrapHeader}>
         <Header />

@@ -160,6 +160,7 @@ const styles = StyleSheet.create({
     borderColor: 'lightgray',
     borderRadius: dimension.md,
     paddingHorizontal: dimension.md,
+    justifyContent: 'center',
   },
   errorMessage: {
     fontSize: dimension.s,
